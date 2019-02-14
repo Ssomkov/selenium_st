@@ -34,8 +34,8 @@ public class HomePage extends FieldWorker {
     public HomePage verifyAllProductsHaveLabels() {
         boolean res = true;
         try {
-            for (WebElement popularProduct : allProducts) {
-                popularProduct.findElement(By.xpath(".//div[@class='image-wrapper']/div[@class='sticker sale']")).isDisplayed();
+            for (WebElement product : allProducts) {
+                product.findElement(By.xpath("//div[@class='image-wrapper']/div[@class='sticker sale']")).isDisplayed();
             }
         } catch (NullPointerException | NoSuchElementException e) {
             res = false;
