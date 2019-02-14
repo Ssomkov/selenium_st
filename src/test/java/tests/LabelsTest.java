@@ -9,6 +9,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.HomePage;
 
+import java.util.concurrent.TimeUnit;
+
 public class LabelsTest {
 
     private WebDriver driver;
@@ -22,6 +24,8 @@ public class LabelsTest {
     @BeforeMethod
     public void setupTest() {
         driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(5, TimeUnit.SECONDS);
     }
 
     @AfterMethod

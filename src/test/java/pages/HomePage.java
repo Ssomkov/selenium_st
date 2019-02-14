@@ -35,7 +35,7 @@ public class HomePage extends FieldWorker {
         boolean res = true;
         try {
             for (WebElement product : allProducts) {
-                product.findElement(By.xpath("//div[@class='image-wrapper']/div[@class='sticker sale']")).isDisplayed();
+                product.findElement(By.xpath(".//div[@class='sticker sale' or @class='sticker new']")).isDisplayed();
             }
         } catch (NullPointerException | NoSuchElementException e) {
             res = false;
