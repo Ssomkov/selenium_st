@@ -1,20 +1,20 @@
 package tests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.account.LoginPage;
-import pages.account.MainPage;
 
-public class LoginPageTest {
+public class GooglePageTest {
+
 
     private WebDriver driver;
-    private LoginPage loginPage;
-    private MainPage mainPage;
 
     @BeforeClass
     public static void setupClass() {
@@ -34,11 +34,9 @@ public class LoginPageTest {
     }
 
     @Test
-    public void checkLogin() {
-        driver.get("http://localhost/litecart/admin/login.php");
-        String login = "admin";
-        String password = "admin";
-        loginPage = new LoginPage(driver);
-        mainPage = loginPage.login(login, password);
+    public void checkLogoVisible() {
+        driver.get("https://www.google.com/");
+        WebElement logo = driver.findElement(By.xpath("//img[@id='hplogo']"));
+        Assert.assertTrue(logo.isDisplayed(), "Лого не отображается");
     }
 }

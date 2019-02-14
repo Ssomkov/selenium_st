@@ -4,7 +4,7 @@
 <suite name="Suite">
     <test name="exampletest">
         <classes>
-            <class name="GooglePageTest"/>
+            <class name="tests.GooglePageTest"/>
         </classes>
     </test>
 </suite>
