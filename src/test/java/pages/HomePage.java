@@ -13,17 +13,8 @@ public class HomePage extends FieldWorker {
 
     private WebDriver driver;
 
-    @FindBy(xpath = "//div[@class='box']//li[@class='product column shadow hover-light']")
+    @FindBy(xpath = "//li[contains(@class, 'product')]")
     private List<WebElement> allProducts;
-
-    @FindBy(xpath = "//div[@id='box-most-popular']//li")
-    private List<WebElement> popularProducts;
-
-    @FindBy(xpath = "//div[@id='box-campaigns']//li")
-    private List<WebElement> campaignsProducts;
-
-    @FindBy(xpath = "//div[@id='box-latest-products']//li")
-    private List<WebElement> latestProducts;
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
@@ -33,7 +24,7 @@ public class HomePage extends FieldWorker {
     public HomePage verifyAllProductsHaveLabels() {
         boolean res = true;
         for (WebElement product : allProducts) {
-            if (product.findElements(By.xpath(".//div[@class='sticker sale' or @class='sticker new']")).isEmpty()) {
+            if (product.findElements(By.xpath(".//div[contains(@class,'sticker')]")).isEmpty()) {
                 res = false;
             }
         }
