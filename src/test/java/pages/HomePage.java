@@ -1,7 +1,6 @@
 package pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -33,12 +32,10 @@ public class HomePage extends FieldWorker {
 
     public HomePage verifyAllProductsHaveLabels() {
         boolean res = true;
-        try {
-            for (WebElement product : allProducts) {
-                product.findElement(By.xpath(".//div[@class='sticker sale' or @class='sticker new']")).isDisplayed();
+        for (WebElement product : allProducts) {
+            if (product.findElements(By.xpath(".//div[@class='sticker sale' or @class='sticker new']")).isEmpty()) {
+                res = false;
             }
-        } catch (NullPointerException | NoSuchElementException e) {
-            res = false;
         }
         Assert.assertTrue(res);
         return this;
