@@ -29,6 +29,11 @@ public class MainPage extends FieldWorker {
         Assert.assertTrue(statisticsPanel.isDisplayed());
     }
 
+    public CountriesPage openCountriesPage() {
+        driver.findElement(By.xpath("//li[@id='app-']/a/span[(text()='Countries')]")).click();
+        return new CountriesPage(driver);
+    }
+
     public MainPage verifyAllCategoryHaveHeaders() {
         boolean res = true;
         List<WebElement> header;
