@@ -41,7 +41,7 @@ public class Product {
 
     public boolean isSalePriceBold() {
         if (salePriceFontStyle != null) {
-            return salePriceFontStyle.contains("bold");
+            return salePriceFontStyle.contains("900") || salePriceFontStyle.contains("700");
         }
         return false;
     }

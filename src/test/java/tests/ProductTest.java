@@ -45,20 +45,10 @@ public class ProductTest {
         homePage = new HomePage(driver);
         //данные о товаре с главной страницы
         Product productFromMainPage = homePage.getFirstCampaignsProductInfo();
-        boolean isSalePriceColorRedMainPage = productFromMainPage.isSalePriceColorRed();
-        boolean isSalePriceBoldMainPage = productFromMainPage.isSalePriceBold();
-        boolean isCommonPriceStrikeThroughMainPage = productFromMainPage.isCommonPriceStrikeThrough();
-        boolean isCommonPriceGreyMainPage = productFromMainPage.isCommonPriceGrey();
-        boolean isSalePriceSizeMoreCommonPriceSizeMainPage = productFromMainPage.isSalePriceSizeMoreCommonPriceSize();
         //переход на страницу товара
         productPage = homePage.openFirstCampaignsProductInfo();
         //данные со страницы товара
         Product productFromProductPage = productPage.getProductInfo();
-        boolean isSalePriceColorRedProductPage = productFromMainPage.isSalePriceColorRed();
-        boolean isSalePriceBoldProductPage = productFromMainPage.isSalePriceBold();
-        boolean isCommonPriceStrikeThroughProductPage = productFromMainPage.isCommonPriceStrikeThrough();
-        boolean isCommonPriceGreyProductPage = productFromMainPage.isCommonPriceGrey();
-        boolean isSalePriceSizeMoreCommonPriceSizeProductPage = productFromMainPage.isSalePriceSizeMoreCommonPriceSize();
         //проверки
         //на главной странице и на странице товара совпадает текст названия товара
         Assert.assertEquals(productFromMainPage.getName(), productFromProductPage.getName());
@@ -66,17 +56,17 @@ public class ProductTest {
         Assert.assertEquals(productFromMainPage.getCommonPrice(), productFromProductPage.getCommonPrice());
         Assert.assertEquals(productFromMainPage.getSalePrice(), productFromProductPage.getSalePrice());
         //обычная цена зачёркнутая и серая
-        Assert.assertTrue(isCommonPriceStrikeThroughMainPage);
-        Assert.assertTrue(isCommonPriceGreyMainPage);
-        Assert.assertTrue(isCommonPriceStrikeThroughProductPage);
-        Assert.assertTrue(isCommonPriceGreyProductPage);
+        Assert.assertTrue(productFromMainPage.isCommonPriceStrikeThrough());
+        Assert.assertTrue(productFromMainPage.isCommonPriceGrey());
+        Assert.assertTrue(productFromMainPage.isCommonPriceStrikeThrough());
+        Assert.assertTrue(productFromMainPage.isCommonPriceGrey());
         //акционная жирная и красная
-        Assert.assertTrue(isSalePriceColorRedMainPage);
-        //Assert.assertTrue(isSalePriceBoldMainPage);
-        Assert.assertTrue(isSalePriceColorRedProductPage);
-        //Assert.assertTrue(isSalePriceBoldProductPage);
+        Assert.assertTrue(productFromMainPage.isSalePriceColorRed());
+        Assert.assertTrue(productFromMainPage.isSalePriceBold());
+        Assert.assertTrue(productFromMainPage.isSalePriceColorRed());
+        Assert.assertTrue(productFromMainPage.isSalePriceBold());
         //акционная цена крупнее, чем обычная
-        Assert.assertTrue(isSalePriceSizeMoreCommonPriceSizeMainPage);
-        Assert.assertTrue(isSalePriceSizeMoreCommonPriceSizeProductPage);
+        Assert.assertTrue(productFromMainPage.isSalePriceSizeMoreCommonPriceSize());
+        Assert.assertTrue(productFromMainPage.isSalePriceSizeMoreCommonPriceSize());
     }
 }
