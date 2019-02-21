@@ -4,42 +4,25 @@ import models.Product;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 
 import java.util.List;
 
-public class HomePage extends FieldWorker {
+public class ProductPage extends FieldWorker {
 
     private WebDriver driver;
 
-    @FindBy(xpath = "//li[contains(@class, 'product')]")
-    private List<WebElement> allProducts;
-
-    public HomePage(WebDriver driver) {
+    public ProductPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
-    public HomePage verifyAllProductsHaveLabels() {
-        boolean res = true;
-        for (WebElement product : allProducts) {
-            if (product.findElements(By.xpath(".//div[contains(@class,'sticker')]")).isEmpty()) {
-                res = false;
-            }
-        }
-        Assert.assertTrue(res);
-        return this;
-    }
-
-    public Product getFirstCampaignsProductInfo() {
+    public Product getProductInfo() {
         Product product = new Product();
-        //первый товар из списка товаров в разделе campaigns
-        List<WebElement> productList = driver.findElements(By.xpath("//div[@id='box-campaigns']//li[contains(@class, 'product')]"));
+        List<WebElement> productList = driver.findElements(By.xpath("//div[@id='box-product']"));
         WebElement firstProduct = productList.get(0);
         //чтение свойств товара
-        String name = firstProduct.findElement(By.xpath(".//div[@class='name']")).getText();
+        String name = firstProduct.findElement(By.xpath(".//h1[@itemprop='name']")).getText();
         //обычная цена
         String commonPrice = firstProduct.findElement(By.xpath(".//s")).getText();
         commonPrice = commonPrice.substring(commonPrice.indexOf("$") + 1);
@@ -67,13 +50,5 @@ public class HomePage extends FieldWorker {
         product.setSalePriceColor(salePriceColor);
         product.setSalePriceFontSize(salePriceFontSize);
         return product;
-    }
-
-    public ProductPage openFirstCampaignsProductInfo() {
-        //первый товар из списка товаров в разделе campaigns
-        List<WebElement> productList = driver.findElements(By.xpath("//div[@id='box-campaigns']//li[contains(@class, 'product')]"));
-        WebElement firstProduct = productList.get(0);
-        firstProduct.click();
-        return new ProductPage(driver);
     }
 }
