@@ -34,6 +34,11 @@ public class MainPage extends FieldWorker {
         return new CountriesPage(driver);
     }
 
+    public ZonesPage openZonesPage() {
+        driver.findElement(By.xpath("//li[@id='app-']/a/span[(text()='Geo Zones')]")).click();
+        return new ZonesPage(driver);
+    }
+
     public MainPage verifyAllCategoryHaveHeaders() {
         boolean res = true;
         List<WebElement> header;

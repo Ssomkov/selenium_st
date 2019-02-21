@@ -48,7 +48,7 @@ public class CountriesPage extends FieldWorker {
     }
 
     public CountriesPage verifyZonesInCountrySorted() {
-        //проверка сортровки зон
+        //проверка сортировки зон
         boolean isZonesInCountrySorted = true;
         List<String> countriesNames;
         countriesNames = getCountriesNames();
