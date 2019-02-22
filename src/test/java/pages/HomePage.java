@@ -17,6 +17,18 @@ public class HomePage extends FieldWorker {
     @FindBy(xpath = "//li[contains(@class, 'product')]")
     private List<WebElement> allProducts;
 
+    @FindBy(xpath = "//div[@id='box-account']//a[text()='Logout']")
+    private WebElement logoutBtn;
+
+    @FindBy(xpath = "//input[@name='email']")
+    private WebElement usernameInput;
+
+    @FindBy(xpath = "//input[@name='password']")
+    private WebElement passwordInput;
+
+    @FindBy(xpath = "//button[@name='login']")
+    private WebElement loginBtn;
+
     public HomePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -75,5 +87,23 @@ public class HomePage extends FieldWorker {
         WebElement firstProduct = productList.get(0);
         firstProduct.click();
         return new ProductPage(driver);
+    }
+
+    public RegistrationPage openRegistrationPage() {
+        WebElement regUrl = driver.findElement(By.xpath("//form[@name='login_form']//a[text()='New customers click here']"));
+        regUrl.click();
+        return new RegistrationPage(driver);
+    }
+
+    public HomePage logout() {
+        logoutBtn.click();
+        return this;
+    }
+
+    public HomePage login(String username, String password) {
+        setTextField(usernameInput, username);
+        setTextField(passwordInput, password);
+        loginBtn.click();
+        return this;
     }
 }
