@@ -6,7 +6,6 @@ import java.util.List;
 public class Product {
 
     private String name;
-
     private String salePrice;
     private String salePriceColor;
     private String salePriceFontStyle;
@@ -15,6 +14,26 @@ public class Product {
     private String commonPriceColor;
     private String commonPriceFontStyle;
     private String commonPriceFontSize;
+
+    private String status;
+    private String code;
+    private String sex;
+    private String quantity;
+    private String image;
+    private String dateValidFrom;
+    private String dateValidTo;
+    private String manufacturer;
+    private String supplier;
+    private String keywords;
+    private String description;
+    private String shortDescription;
+    private String headTitle;
+    private String metaDescription;
+    private String purchasePrice;
+    private String currencyCode;
+
+    private List<Campaign> campaigns;
+
 
     public boolean isSalePriceColorRed() {
         if (salePriceColor != null) {
@@ -132,5 +151,141 @@ public class Product {
 
     public void setCommonPriceFontSize(String commonPriceFontSize) {
         this.commonPriceFontSize = commonPriceFontSize;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getDateValidFrom() {
+        return dateValidFrom;
+    }
+
+    public void setDateValidFrom(String dateValidFrom) {
+        this.dateValidFrom = dateValidFrom;
+    }
+
+    public String getDateValidTo() {
+        return dateValidTo;
+    }
+
+    public void setDateValidTo(String dateValidTo) {
+        this.dateValidTo = dateValidTo;
+    }
+
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    public String getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(String supplier) {
+        this.supplier = supplier;
+    }
+
+    public String getKeywords() {
+        return keywords;
+    }
+
+    public void setKeywords(String keywords) {
+        this.keywords = keywords;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getShortDescription() {
+        return shortDescription;
+    }
+
+    public void setShortDescription(String shortDescription) {
+        this.shortDescription = shortDescription;
+    }
+
+    public String getHeadTitle() {
+        return headTitle;
+    }
+
+    public void setHeadTitle(String headTitle) {
+        this.headTitle = headTitle;
+    }
+
+    public String getMetaDescription() {
+        return metaDescription;
+    }
+
+    public void setMetaDescription(String metaDescription) {
+        this.metaDescription = metaDescription;
+    }
+
+    public String getPurchasePrice() {
+        return purchasePrice;
+    }
+
+    public void setPurchasePrice(String purchasePrice) {
+        this.purchasePrice = purchasePrice;
+    }
+
+    public String getCurrencyCode() {
+        return currencyCode;
+    }
+
+    public void setCurrencyCode(String currencyCode) {
+        this.currencyCode = currencyCode;
+    }
+
+    public List<Campaign> getCampaigns() {
+        return campaigns;
+    }
+
+    public void setCampaigns(List<Campaign> campaigns) {
+        this.campaigns = campaigns;
     }
 }

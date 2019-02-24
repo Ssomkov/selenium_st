@@ -20,4 +20,17 @@ public class DataGenerator {
         }
         return buffer.toString();
     }
+
+    public static String getRandomNumber(int length) {
+        int leftLimit = 48; // digit '0'
+        int rightLimit = 57; // digit '9'
+        Random random = new Random();
+        StringBuilder buffer = new StringBuilder(length);
+        for (int i = 0; i < length; i++) {
+            int randomLimitedInt = leftLimit + (int)
+                    (random.nextFloat() * (rightLimit - leftLimit + 1));
+            buffer.append((char) randomLimitedInt);
+        }
+        return buffer.toString();
+    }
 }

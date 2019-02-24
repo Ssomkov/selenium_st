@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import pages.FieldWorker;
+import pages.account.catalog.CatalogPage;
 
 import java.util.List;
 
@@ -37,6 +38,11 @@ public class MainPage extends FieldWorker {
     public ZonesPage openZonesPage() {
         driver.findElement(By.xpath("//li[@id='app-']/a/span[(text()='Geo Zones')]")).click();
         return new ZonesPage(driver);
+    }
+
+    public CatalogPage openCatalogPage() {
+        driver.findElement(By.xpath("//li[@id='app-']/a/span[(text()='Catalog')]")).click();
+        return new CatalogPage(driver);
     }
 
     public MainPage verifyAllCategoryHaveHeaders() {
