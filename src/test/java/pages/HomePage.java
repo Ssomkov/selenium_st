@@ -89,10 +89,24 @@ public class HomePage extends FieldWorker {
         return new ProductPage(driver);
     }
 
+    public ProductPage openFirstPopularProductInfo() {
+        //первый товар из списка товаров в разделе популярных
+        List<WebElement> productList = driver.findElements(By.xpath("//div[@id='box-most-popular']//li[contains(@class, 'product')]"));
+        WebElement firstProduct = productList.get(0);
+        firstProduct.click();
+        return new ProductPage(driver);
+    }
+
     public RegistrationPage openRegistrationPage() {
         WebElement regUrl = driver.findElement(By.xpath("//form[@name='login_form']//a[text()='New customers click here']"));
         regUrl.click();
         return new RegistrationPage(driver);
+    }
+
+    public CartPage openCartPage() {
+        WebElement cart = driver.findElement(By.xpath("//div[@id='cart-wrapper']//a[contains(text(), 'Checkout')]"));
+        cart.click();
+        return new CartPage(driver);
     }
 
     public HomePage logout() {

@@ -5,6 +5,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
@@ -15,6 +18,28 @@ public class ProductPage extends FieldWorker {
     public ProductPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
+    }
+
+    public HomePage openHomePage() {
+        driver.findElement(By.xpath("//nav[@id='breadcrumbs']//a[text()='Home']")).click();
+        return new HomePage(driver);
+    }
+
+    public ProductPage addToCart() {
+        WebDriverWait wait = new WebDriverWait(driver, 5);
+        WebElement quantity = driver.findElement(By.xpath("//div[@id='cart']//span[@class='quantity']"));
+        String quantityFromSpan = quantity.getText();
+        //добавление в корзину
+        driver.findElement(By.xpath("//button[@name='add_cart_product']")).click();
+        //проверка изменения количества товаров
+        wait.until(ExpectedConditions.not(ExpectedConditions.textToBe(By.xpath("//div[@id='cart']//span[@class='quantity']"), quantityFromSpan)));
+        return this;
+    }
+
+    public ProductPage selectSize(String value) {
+        Select size = new Select(driver.findElement(By.xpath("//select[@name='options[Size]']")));
+        size.selectByValue(value);
+        return this;
     }
 
     public Product getProductInfo() {
