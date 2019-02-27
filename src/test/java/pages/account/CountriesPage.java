@@ -102,4 +102,11 @@ public class CountriesPage extends FieldWorker {
         }
         return zonesNames;
     }
+
+    public CountryPage editFirstCountry() {
+        countryList = driver.findElements(By.xpath("//form[@name='countries_form']//tr[@class='row']"));
+        WebElement firstCountry = countryList.get(0);
+        firstCountry.findElement(By.xpath("./td[7]/a")).click();
+        return new CountryPage(driver);
+    }
 }
