@@ -38,4 +38,19 @@ public class CatalogPage extends FieldWorker {
         Assert.assertTrue(res);
         return this;
     }
+
+    public CatalogPage openAllProductsInRubberDucks() {
+        WebElement rubberDucks = driver.findElement(By.xpath("//table[@class='dataTable']//a[text()='Rubber Ducks']"));
+        rubberDucks.click();
+        List<WebElement> products = driver.findElements(By.xpath("//table[@class='dataTable']//td[3]/img[contains(@style, '32px')]/../../td[5]"));
+        int size = products.size();
+        for (int i = 0; i < size; i++) {
+            products = driver.findElements(By.xpath("//table[@class='dataTable']//td[3]/img[contains(@style, '32px')]/../../td[5]"));
+            products.get(i).click();
+            driver.findElement(By.xpath("//li[@id='app-']/a/span[(text()='Catalog')]")).click();
+            rubberDucks = driver.findElement(By.xpath("//table[@class='dataTable']//a[text()='Rubber Ducks']"));
+            rubberDucks.click();
+        }
+        return this;
+    }
 }
