@@ -29,6 +29,18 @@ public class HomePage extends FieldWorker {
     @FindBy(xpath = "//button[@name='login']")
     private WebElement loginBtn;
 
+    @FindBy(xpath = "//div[@id='box-most-popular']//li[contains(@class, 'product')]")
+    List<WebElement> popularProductList;
+
+    @FindBy(xpath = "//div[@id='box-campaigns']//li[contains(@class, 'product')]")
+    List<WebElement> campaignsProductList;
+
+    @FindBy(xpath = "//div[@id='cart-wrapper']//a[contains(text(), 'Checkout')]")
+    WebElement checkoutCartLink;
+
+    @FindBy(xpath = "//form[@name='login_form']//a[text()='New customers click here']")
+    WebElement regUrlLink;
+
     public HomePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -83,29 +95,25 @@ public class HomePage extends FieldWorker {
 
     public ProductPage openFirstCampaignsProductInfo() {
         //первый товар из списка товаров в разделе campaigns
-        List<WebElement> productList = driver.findElements(By.xpath("//div[@id='box-campaigns']//li[contains(@class, 'product')]"));
-        WebElement firstProduct = productList.get(0);
+        WebElement firstProduct = campaignsProductList.get(0);
         firstProduct.click();
         return new ProductPage(driver);
     }
 
     public ProductPage openFirstPopularProductInfo() {
         //первый товар из списка товаров в разделе популярных
-        List<WebElement> productList = driver.findElements(By.xpath("//div[@id='box-most-popular']//li[contains(@class, 'product')]"));
-        WebElement firstProduct = productList.get(0);
+        WebElement firstProduct = popularProductList.get(0);
         firstProduct.click();
         return new ProductPage(driver);
     }
 
     public RegistrationPage openRegistrationPage() {
-        WebElement regUrl = driver.findElement(By.xpath("//form[@name='login_form']//a[text()='New customers click here']"));
-        regUrl.click();
+        regUrlLink.click();
         return new RegistrationPage(driver);
     }
 
     public CartPage openCartPage() {
-        WebElement cart = driver.findElement(By.xpath("//div[@id='cart-wrapper']//a[contains(text(), 'Checkout')]"));
-        cart.click();
+        checkoutCartLink.click();
         return new CartPage(driver);
     }
 
