@@ -17,6 +17,15 @@ public class CartPage extends FieldWorker {
     @FindBy(xpath = "//li[contains(@class, 'shortcut')]/a[contains(@class, 'inact')]")
     List<WebElement> productPicts;
 
+    @FindBy(xpath = "//li[@class='shortcut']/a")
+    List<WebElement> shortcuts;
+
+    @FindBy(xpath = "//button[@name='remove_cart_item']")
+    List<WebElement> deleteBtns;
+
+    @FindBy(xpath = "//div[@id='order_confirmation-wrapper']//tr")
+    List<WebElement> orderTableRows;
+
     public CartPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -26,19 +35,13 @@ public class CartPage extends FieldWorker {
         WebDriverWait wait = new WebDriverWait(driver, 5);
         int productCount = productPicts.size();
         wait.until(ExpectedConditions.visibilityOfAllElements(productPicts));
-        List<WebElement> orderTableRows;
         int orderTableRowsCount;
-        List<WebElement> deleteBtn;
-        List<WebElement> shortcuts;
         for (int i = 0; i < productCount; i++) {
-            shortcuts = driver.findElements(By.xpath("//li[@class='shortcut']/a"));
-            orderTableRows = driver.findElements(By.xpath("//div[@id='order_confirmation-wrapper']//tr"));
             orderTableRowsCount = orderTableRows.size();
             if (!shortcuts.isEmpty()) {
                 wait.until(ExpectedConditions.elementToBeClickable(shortcuts.get(0))).click();
             }
-            deleteBtn = driver.findElements(By.xpath("//button[@name='remove_cart_item']"));
-            wait.until(ExpectedConditions.elementToBeClickable(deleteBtn.get(0))).click();
+            wait.until(ExpectedConditions.elementToBeClickable(deleteBtns.get(0))).click();
             wait.until(ExpectedConditions.numberOfElementsToBeLessThan(By.xpath("//div[@id='order_confirmation-wrapper']//tr"), orderTableRowsCount));
         }
         return this;
