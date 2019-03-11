@@ -18,6 +18,9 @@ public class CatalogPage extends FieldWorker {
     @FindBy(xpath = "//a[contains(text(), 'Add New Product')]")
     WebElement addProductBtn;
 
+    @FindBy(xpath = "//tr[contains(@class, 'row')]/td[3]/a")
+    List<WebElement> products;
+
     public CatalogPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -30,7 +33,6 @@ public class CatalogPage extends FieldWorker {
 
     public CatalogPage verifyProductIsPresent(Product product) {
         boolean res = false;
-        List<WebElement> products = driver.findElements(By.xpath("//tr[contains(@class, 'row')]/td[3]/a"));
         for (WebElement element : products) {
             if (element.getText().equals(product.getName()))
                 res = true;
