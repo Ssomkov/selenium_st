@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
 import pages.HomePage;
 import pages.RegistrationPage;
+import utils.Navigation;
 
 import java.util.concurrent.TimeUnit;
 
@@ -54,8 +55,8 @@ public class CreateNewUserTest {
 
     @Test(dataProvider = "userData")
     public void checkNewUserRegistered(User user) {
-        driver.get("http://localhost/litecart/en/");
-        homePage = new HomePage(driver);
+        Navigation navigation = new Navigation(driver);
+        homePage = navigation.openHomePage();
         registrationPage = homePage.openRegistrationPage();
         homePage = registrationPage.registerUser(user);
         homePage.logout();

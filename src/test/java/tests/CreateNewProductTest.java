@@ -10,6 +10,7 @@ import pages.account.LoginPage;
 import pages.account.MainPage;
 import pages.account.catalog.CatalogPage;
 import pages.account.catalog.ProductPage;
+import utils.Navigation;
 
 import java.util.Arrays;
 import java.util.List;
@@ -83,10 +84,10 @@ public class CreateNewProductTest {
 
     @Test(dataProvider = "productData")
     public void checkNewProductAdded(Product product) {
-        driver.get("http://localhost/litecart/admin/login.php");
+        Navigation navigation = new Navigation(driver);
+        loginPage = navigation.openLoginPage();
         String login = "admin";
         String password = "admin";
-        loginPage = new LoginPage(driver);
         mainPage = loginPage.login(login, password);
         catalogPage = mainPage.openCatalogPage();
         productPage = catalogPage.openProductPage();

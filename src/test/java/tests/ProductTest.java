@@ -11,6 +11,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.ProductPage;
+import utils.Navigation;
 
 public class ProductTest {
 
@@ -41,8 +42,8 @@ public class ProductTest {
 
     @Test
     public void checkProductInfo() {
-        driver.get("http://localhost/litecart/en/");
-        homePage = new HomePage(driver);
+        Navigation navigation = new Navigation(driver);
+        homePage = navigation.openHomePage();
         //данные о товаре с главной страницы
         Product productFromMainPage = homePage.getFirstCampaignsProductInfo();
         //переход на страницу товара

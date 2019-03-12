@@ -8,6 +8,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.HomePage;
+import utils.Navigation;
 
 import java.util.concurrent.TimeUnit;
 
@@ -37,8 +38,8 @@ public class LabelsTest {
 
     @Test
     public void checkProductsHaveLabels() {
-        driver.get("http://localhost/litecart/en/");
-        homePage = new HomePage(driver);
+        Navigation navigation = new Navigation(driver);
+        homePage = navigation.openHomePage();
         homePage.verifyAllProductsHaveLabels();
     }
 }

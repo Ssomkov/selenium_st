@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 import pages.account.CountriesPage;
 import pages.account.LoginPage;
 import pages.account.MainPage;
+import utils.Navigation;
 
 public class CountriesSortingTest {
 
@@ -37,10 +38,10 @@ public class CountriesSortingTest {
 
     @Test
     public void checkCountriesSorted() {
-        driver.get("http://localhost/litecart/admin/login.php");
+        Navigation navigation = new Navigation(driver);
+        loginPage = navigation.openLoginPage();
         String login = "admin";
         String password = "admin";
-        loginPage = new LoginPage(driver);
         mainPage = loginPage.login(login, password);
         countriesPage = mainPage.openCountriesPage();
         countriesPage.verifyCountriesListSorted();

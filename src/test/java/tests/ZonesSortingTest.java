@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 import pages.account.LoginPage;
 import pages.account.MainPage;
 import pages.account.ZonesPage;
+import utils.Navigation;
 
 public class ZonesSortingTest {
 
@@ -37,10 +38,10 @@ public class ZonesSortingTest {
 
     @Test
     public void checkZonesSorted() {
-        driver.get("http://localhost/litecart/admin/login.php");
+        Navigation navigation = new Navigation(driver);
+        loginPage = navigation.openLoginPage();
         String login = "admin";
         String password = "admin";
-        loginPage = new LoginPage(driver);
         mainPage = loginPage.login(login, password);
         zonesPage = mainPage.openZonesPage();
         zonesPage.verifyZonesSorted();

@@ -9,6 +9,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.account.LoginPage;
 import pages.account.MainPage;
+import utils.Navigation;
 
 public class LoginPageTest {
 
@@ -35,10 +36,10 @@ public class LoginPageTest {
 
     @Test
     public void checkLogin() {
-        driver.get("http://localhost/litecart/admin/login.php");
+        Navigation navigation = new Navigation(driver);
+        loginPage = navigation.openLoginPage();
         String login = "admin";
         String password = "admin";
-        loginPage = new LoginPage(driver);
         mainPage = loginPage.login(login, password);
     }
 }

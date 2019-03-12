@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 import pages.CartPage;
 import pages.HomePage;
 import pages.ProductPage;
+import utils.Navigation;
 
 import java.util.concurrent.TimeUnit;
 
@@ -40,8 +41,8 @@ public class CartTest {
 
     @Test
     public void checkCartItemCount() {
-        driver.get("http://localhost/litecart/en/");
-        homePage = new HomePage(driver);
+        Navigation navigation = new Navigation(driver);
+        homePage = navigation.openHomePage();
         //добавление 1 товара
         productPage = homePage.openFirstPopularProductInfo();
         productPage.addToCart();
